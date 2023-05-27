@@ -1,6 +1,5 @@
 <ion-grid *ngIf="calificacionesList.length>0">
   <ion-row size="15">
-      <ion-col size="2">Matricula</ion-col>
       <ion-col size="2">Materia</ion-col>
       <ion-col size="2">Calificacion</ion-col>
       <ion-col size="2">Estado</ion-col>
@@ -8,9 +7,6 @@
       <ion-col size="2"></ion-col>
   </ion-row>
   <ion-row size="15" *ngFor="let calificacion of calificacionesList">
-      <ion-col size="2">
-          {{calificacion.matricula}}
-      </ion-col>
       <ion-col size="2">
         {{calificacion.materia}}
     </ion-col>

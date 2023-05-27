@@ -13,12 +13,6 @@
 
   <ion-list>
     <ion-item>
-        <ion-label>
-            Matricula:
-        </ion-label>
-        <ion-input type="number" [(ngModel)]="matricula" placeholder="Ingrese la matricula"></ion-input>
-    </ion-item>
-    <ion-item>
       <ion-label>
         Materia:
         </ion-label>
@@ -41,7 +35,7 @@
         <ion-button type="button" (click)="guardar()">{{estado}}</ion-button>
         <ion-button *ngIf="estado==='actualizar'" type="button" (click)="cancelar()">Cancelar</ion-button>
         <ion-text *ngIf="error" color="danger">
-            <h6>Debe ingresar matricula, materia, calificacion y estado para {{estado}}</h6>
+            <h6>Debe ingresar materia, calificacion (entre 0 y 100) y estado para {{estado}}</h6>
         </ion-text>
     </ion-item>
 

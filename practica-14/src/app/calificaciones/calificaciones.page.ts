@@ -12,25 +12,20 @@ export class CalificacionesPage implements OnInit {
 
   calificaciones: Calificacion[]=[];
   materia: string ='';
-  matricula: string = '';
   calificacion: string = '';
   estadoAR: string = '';
   estado: string = '';
   idActualizar: any|number = 0;
   error: boolean = false;
-  
-
 
   constructor(private CalificacionService: CalificacionService) { }
 
   ngOnInit() {
     this.CalificacionService.setCalificaciones([
-      {id:1, materia: 'Algebra Lineal',
-      matricula: '1934843', calificacion: '65', estadoAR:'Reprobado'},
-      {id:2, materia: 'Aplicaciones Moviles',
-      matricula: '1946342', calificacion: '100', estadoAR:'Aprobado'},
-      {id:2, materia: 'Base de Datos',
-      matricula: '1927432', calificacion: '95', estadoAR:'Aprobado'},
+      {id:1, materia: 'Algebra Lineal', calificacion: '65', estadoAR:'Reprobado'},
+      {id:2, materia: 'Aplicaciones Moviles', calificacion: '100', estadoAR:'Aprobado'},
+      {id:3, materia: 'Base de Datos', calificacion: '95', estadoAR:'Aprobado'},
+      {id:4, materia: 'Circuitos Digitales', calificacion: '68', estadoAR:'Reprobado'}
     ]);
 
     this.calificaciones = this.CalificacionService.getCalificaciones();
@@ -38,8 +33,11 @@ export class CalificacionesPage implements OnInit {
   }
 
   public guardar(){
+    if((Number(this.calificacion)<0 || Number(this.calificacion)>100)){
+      this.error = true;
+      return;
+    }
     if((this.materia == undefined || this.materia == '' ) ||
-      (this.matricula == undefined || this.matricula == '') ||
       (this.calificacion == undefined || this.calificacion == '') ||
       (this.estadoAR == undefined || this.estadoAR == '') ) {
       this.error = true;
@@ -47,7 +45,6 @@ export class CalificacionesPage implements OnInit {
     }
     let calificacion: Calificacion={
       materia: this.materia,
-      matricula: this.matricula,
       calificacion: this.calificacion,
       estadoAR: this.estadoAR
     };
@@ -64,7 +61,6 @@ export class CalificacionesPage implements OnInit {
 
   public cancelar(){
     this.estado = 'guardar';
-    this.matricula = '';
     this.materia = '';
     this.calificacion = '';
     this.estadoAR = '';
@@ -78,7 +74,6 @@ export class CalificacionesPage implements OnInit {
 
   public editar(calificacion:Calificacion){
     this.estado = 'actualizar';
-    this.matricula = calificacion.matricula;
     this.materia = calificacion.materia;
     this.calificacion = calificacion.calificacion;
     this.estadoAR = calificacion.estadoAR;

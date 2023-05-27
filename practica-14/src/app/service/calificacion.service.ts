@@ -37,7 +37,6 @@ export class CalificacionService {
     this.calificaciones.filter(
       (al)=>al.id==calificacion.id
     ).map(al=>{
-      al.matricula=calificacion.matricula;
       al.materia = calificacion.materia;
       al.calificacion = calificacion.calificacion;
     });
